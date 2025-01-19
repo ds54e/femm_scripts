@@ -15,7 +15,7 @@ COPPER_CONDUCTIVITY = 56
 RESOLUTION = 20
 
 -- Boundary condition
-R_IN = (D + RW) * 5 -- Radius of interior region
+R_IN = RW * 20 -- Radius of interior region
 R_EX = R_IN/10 -- Radius of exterior region
 
 
