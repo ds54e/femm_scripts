@@ -1,6 +1,6 @@
 -- File name
 ROOT_DIR = ""
-SIM_NAME = "one_straight_wire"
+SIM_NAME = "single_straight_wire"
 FEM_FILE = ROOT_DIR .. SIM_NAME .. ".fem"
 
 -- Problem definition
