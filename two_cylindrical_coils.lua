@@ -9,25 +9,25 @@ TYPE = "axi"
 PRECISION = 1e-12
 FREQ = 100e3
 
--- Coils
-D12 = 20e-3 -- Distance between coils
+-- Primary coil
+RW1 = 0.8e-3 -- Radius of wire
+N1 = 10 -- Number of turns
+R1 = 40e-3 -- Radius of coil
+H1 = 40e-3 -- Height of coil
+Z1 = 0
+
+-- Secondary coil
+RW2 = 0.4e-3 -- Radius of wire
+N2 = 100 -- Number of turns
+R2 = 35e-3 -- Radius of coil
+H2 = 200e-3 -- Height of coil
+Z2 = 0
+
 COPPER_CONDUCTIVITY = 56
 RESOLUTION_WIRE = 20
--- Primary
-RW1 = 0.4e-3 -- Radius of wire
-N1 = 10 -- Number of turns
-R1 = 20e-3 -- Radius of coil
-H1 = 20e-3 -- Height of coil
-Z1 = -(H1 + RW1)
--- Secondary
-RW2 = 0.4e-3 -- Radius of wire
-N2 = 10 -- Number of turns
-R2 = 20e-3 -- Radius of coil
-H2 = 20e-3 -- Height of coil
-Z2 = D12 + RW2
 
 -- Boundary condition
-R_IN = (H1 + D12 + H2) * 4 -- Radius of interior region
+R_IN = H2 * 4 -- Radius of interior region
 R_EX = R_IN / 10 -- Radius of exterior region
 RESOLUTION_AIR = 100
 
@@ -78,7 +78,7 @@ function run_magnetic_analysis()
   local r1 = re(v1) -- Resistance
   local l1 = im(v1) / (2*PI*FREQ) -- Self inductance
   local l21 = im(v2) / (2*PI*FREQ) -- Mutual inductance
-  print(format("R = %.1e Ohm, L = %.1e Henry, M = %.1e Henry", r1, l1, l21))
+  print(format("R1 = %.1e Ohm, L1 = %.1e Henry, M21 = %.1e Henry", r1, l1, l21))
 
   mi_saveas(FEM_FILE)
 end
