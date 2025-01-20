@@ -57,7 +57,7 @@ function run_magnetic_analysis()
   -- Calculate R+L
   local current, volts = mo_getcircuitproperties("I1")
   local ru = re(volts) -- Resistance per meter
-  local lu = re(volts) / (2*PI*FREQ) -- Inductance per meter
+  local lu = im(volts) / (2*PI*FREQ) -- Inductance per meter
   print(format("R = %.1e Ohm / meter, L = %.1e Henry / meter", ru, lu))
 
   mi_saveas(FEM_FILE)
